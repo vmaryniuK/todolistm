@@ -66,7 +66,7 @@ export default class App extends Component {
         todoData:newArray 
       }
     }
-    )}
+    )};
 
 
    onDone=(id)=>{
