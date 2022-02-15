@@ -23,13 +23,13 @@ export default function  TodoListItem ({label,onDeleted,onImportant,onDone,impor
       </span>
 
       <button type="button"
-              className="btn btn-outline-success btn-sm float-right"
+              className="btn btn-success btn-sm float-right"
               onClick={(id)=>onImportant(id)}>
         <i className="fa fa-exclamation" />
       </button>
 
       <button type="button"
-              className="btn btn-outline-danger btn-sm float-right" onClick={(id)=>onDeleted(id)}>
+              className="btn btn-danger btn-sm float-right" onClick={(id)=>onDeleted(id)}>
         <i className="fa fa-trash-o" />
       </button>
     </span>
