@@ -1,12 +1,12 @@
-import React ,{Component}from 'react';
+import React, { Component }from 'react';
 
 import AppHeader from '../app-header';
 import SearchPanel from '../search-panel';
 import TodoList from '../todo-list';
 import ItemStatusFilter from '../item-status-filter';
+import ItemAddForm from "../item-add-form/item-add-form";
 
 import './app.css';
-import ItemAddForm from "../item-add-form/item-add-form";
 
 export default class App extends Component {
   newId=100;
@@ -125,11 +125,15 @@ export default class App extends Component {
       </div>
 
       <TodoList   
-      todos={visible} 
-      onDeleted={this.deleteItem}
-      onImportant={this.onImportant}
-      onDone={this.onDone}/>
-      <ItemAddForm AddItem={this.addItem}/>
+        todos={visible} 
+        onDeleted={this.deleteItem}
+        onImportant={this.onImportant}
+        onDone={this.onDone}
+      />
+      <ItemAddForm 
+        AddItem={this.addItem}
+        data={this.state.todoData}
+      />
     </div>
   );
   }

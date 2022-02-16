@@ -1,52 +1,60 @@
-import React ,{Component}from "react";
+import React ,{ useState }from "react";
 import "./item-add-form.css"
 
- class ItemAddForm extends Component{
+ const ItemAddForm = ({AddItem, data}) => {
+    const [label, setLabel] = useState("");
+    const [isEmpty, setIsEmpty] = useState(true);
 
-   state={
-       label:"",
-       isEmpty:true
-   };
-   onLabelChange=(e)=>{
-    this.setState({
-        label:e.target.value,
-        isEmpty:e.target.value !=="" ? false : true
-    })
+    const onLabelChange=(e)=>{
+        setLabel(e.target.value);
+        e.target.value !=="" ? setIsEmpty(false) : setIsEmpty(true);
+    };
 
-   };
+    const checkSameItem = (item) => {
+        let flag = true;
+        data.forEach(element => {
+            console.log(element)
+            if(element.label === item){
+                flag = false;
+                return;
+            }
+        });
+        return flag;
+    }
    
-   onSubmit=(e)=>{
-       e.preventDefault();
-       this.props.AddItem(this.state.label);
-         
-               this.setState({
-               label:"",
-               isEmpty:true
-           });
-          
-       
-   }
-    render(){
-        
-        
-    return(
-        
-        
-        <form className="item-add-form"
-            onSubmit={this.onSubmit}>
+    const onSubmit = (e) => {
+        if(checkSameItem(label)){
+            e.preventDefault();
+            AddItem(label);
+            setLabel("");
+            setIsEmpty(true);
+        }
+        else{
+            e.preventDefault();
+            setLabel("");
+            setIsEmpty(true);
+            alert("Таке уже є");
+        }
+    }  
 
-            <input type="text" 
-            className="form-control"
-            onChange={this.onLabelChange}
-            value={this.state.label}/>
-
-            <button className="btn btn-secondary add"
-            disabled={this.state.isEmpty}>
+    return(    
+        <form 
+            className="item-add-form"
+            onSubmit={onSubmit}
+        >
+            <input 
+                type="text" 
+                className="form-control"
+                onChange={onLabelChange}
+                value={label}
+            />
+            <button 
+                className="btn btn-secondary add"
+                disabled={isEmpty}
+            >
                 Add Item
             </button>
         </form>
-    )
-
-    
-}}
+    );
+}
 export default ItemAddForm;
