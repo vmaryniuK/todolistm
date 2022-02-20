@@ -13,8 +13,7 @@ import "./item-add-form.css"
     const checkSameItem = (item) => {
         let flag = true;
         data.forEach(element => {
-            console.log(element)
-            if(element.label === item){
+            if(element.label.toLowerCase() === item.toLowerCase()){
                 flag = false;
                 return;
             }
@@ -33,7 +32,7 @@ import "./item-add-form.css"
             e.preventDefault();
             setLabel("");
             setIsEmpty(true);
-            alert("Таке уже є");
+            alert("Incorrect data,try again");
         }
     }  
 

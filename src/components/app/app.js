@@ -12,7 +12,7 @@ export default class App extends Component {
   newId=100;
   state= {
     todoData : [
-      this.onCreateItem('Finish  STEP'),
+      this.onCreateItem('Finish STEP'),
       this.onCreateItem('Found work'),
       this.onCreateItem('Self-develop')],
       term:"",
